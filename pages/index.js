@@ -18,10 +18,7 @@ class CompC extends React.Component {
 export default function Home() {
   const [count, setCount] = useState(10)
 
-  const handleClick = operation => {
-    if(operation === "+") setCount(x=>x+1)
-    else setCount(x=>x-=1)
-  }
+  const handleClick = op => setCount(x => op === "+" ? x+1 : x-1)
   return (
     <>
     <div className="counter">
