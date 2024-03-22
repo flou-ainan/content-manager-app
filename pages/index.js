@@ -10,8 +10,38 @@ function CompA(){
 }
 
 class CompC extends React.Component {
+
+  constructor() {
+    super()
+    this.state = {
+      count: 10
+    }
+  }
+
+
+
+  state = {
+    count: 10
+  }
+
+  handleClick(op){
+    const count = this.state.count
+    this.setState({
+      count: op === "+" ? count+1 : count-1
+    })
+  }
+
   render(){
-   return <h1>Hello CompC</h1> 
+   return (
+    <>
+       <h1>Hello CompC</h1>
+       <div className="counter">
+         Count: <h2>{this.state.count}</h2>
+         <button onClick={() => this.handleClick("-")}>-</button>
+         <button onClick={() => this.handleClick("+")}>+</button>
+       </div>
+    </>
+   ) 
   }
 }
 
@@ -26,7 +56,7 @@ export default function Home() {
       <button onClick={() => handleClick("-")}>-</button>
       <button onClick={() => handleClick("+")}>+</button>
     </div>
-    <CompA />
+    <CompC />
     </>
   );
 }
