@@ -18,13 +18,18 @@ class CompC extends React.Component {
 export default function Home() {
   const [count, setCount] = useState(10)
 
+  const handleClick = operation => {
+    if(operation === "+") setCount(x=>x+1)
+    else setCount(x=>x-=1)
+  }
   return (
     <>
-     <h1>Hello World</h1>
-     <CompA />
     <div className="counter">
-      Count: {count}
+      Count: <h2>{count}</h2>
+      <button onClick={() => handleClick("-")}>-</button>
+      <button onClick={() => handleClick("+")}>+</button>
     </div>
+    <CompA />
     </>
   );
 }
