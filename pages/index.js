@@ -37,6 +37,7 @@ class CompC extends React.Component {
 
   render() {
     const { myValue } = this.state;
+    const { myProp1, myProp2: MyNewComponent } = this.props;
 
     return (
       <>
@@ -44,9 +45,15 @@ class CompC extends React.Component {
         Current Value: <h1>{ myValue }</h1>
         <button onClick={() => this.changeState(myValue+1)}>+</button>
         <button onClick={() => this.changeState(myValue-1)}>-</button>
+        <h2>{myProp1}</h2>
+        <MyNewComponent />
       </>
     )
   }
+}
+
+function MyComponent() {
+  return <h1>My Component!</h1>
 }
 
 function Home() {
@@ -66,11 +73,22 @@ function Home() {
       Other Value: <h1>{ myOtherValue }</h1>
       <button onClick={() => setOtherValue(myOtherValue+1)}>+</button>
       <button onClick={() => setOtherValue(myOtherValue-1)}>-</button>
-      <CompA
+      {/* <CompA
         myProp1={myValue}
         myProp2="My Custom Value"
         myProp3={true}
         myProp4={() => <div>My NEW JSX!</div>}
+      /> */}
+      <CompC myProp1={myValue}
+             myProp2={
+               () =>
+                 <CompA
+                    myProp1={myValue}
+                    myProp2="My Custom Value"
+                    myProp3={true}
+                    myProp4={() => <div>My NEW JSX!</div>}
+                 />
+             }
       />
     </>
   )
