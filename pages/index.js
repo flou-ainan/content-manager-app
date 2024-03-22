@@ -1,11 +1,4 @@
-import React from "react";
-
-
-const ArrowFunction = _ =>
-    <div>
-      <h1>I am a arrow function</h1>
-    </div>
-
+import React, {useState} from "react";
 
 function CompA(){
   return (
@@ -23,11 +16,15 @@ class CompC extends React.Component {
 }
 
 export default function Home() {
+  const [count, setCount] = useState(10)
+
   return (
     <>
      <h1>Hello World</h1>
      <CompA />
-     {/* <CompC /> */}
+    <div className="counter">
+      Count: {count}
+    </div>
     </>
   );
 }
