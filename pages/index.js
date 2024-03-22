@@ -1,3 +1,4 @@
+import React from "react";
 
 function CompA(){
   return (
@@ -18,11 +19,18 @@ function CompB(){
   )
 }
 
+class CompC extends React.Component {
+  render(){
+   return <h1>CompC</h1> 
+  }
+}
+
 export default function Home() {
   return (
     <>
      <h1>Hello World</h1>
      <CompA />
+     <CompC />
     </>
   );
 }
