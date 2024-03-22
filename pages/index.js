@@ -1,10 +1,14 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 
-function CompA(){
+function CompA(allProps){
   return (
     <>
       <h1>CompA</h1>
       <p>Hello Comp A</p>
+      <div>My Prop1: {allProps.myProp1}</div>
+      <div>My Prop2: {allProps.myProp2}</div>
+      <div>My Prop3: {allProps.myProp3.toString()}</div>
+      <div>My Prop4: {<allProps.myProp4 />}</div>
     </>
   )
 }
@@ -12,51 +16,49 @@ function CompA(){
 class CompC extends React.Component {
 
   constructor() {
-    super()
+    super();
     this.state = {
-      count: 10
+      myValue: 10
     }
   }
 
-
-
-  state = {
-    count: 10
-  }
-
-  handleClick(op){
-    const count = this.state.count
+  changeState(incrementor) {
     this.setState({
-      count: op === "+" ? count+1 : count-1
+      myValue: incrementor
     })
   }
 
-  render(){
-   return (
-    <>
-       <h1>Hello CompC</h1>
-       <div className="counter">
-         Count: <h2>{this.state.count}</h2>
-         <button onClick={() => this.handleClick("-")}>-</button>
-         <button onClick={() => this.handleClick("+")}>+</button>
-       </div>
-    </>
-   ) 
+  render() {
+    const { myValue } = this.state;
+
+    return (
+      <>
+        <h1>Hello CompC</h1>
+        Current Value: <h1>{ myValue }</h1>
+        <button onClick={() => this.changeState(myValue+1)}>+</button>
+        <button onClick={() => this.changeState(myValue-1)}>-</button>
+      </>
+    )
   }
 }
 
-export default function Home() {
-  const [count, setCount] = useState(10)
+function Home() {
+  const [myValue, setValue] = useState(10);
 
-  const handleClick = op => setCount(x => op === "+" ? x+1 : x-1)
   return (
     <>
-    <div className="counter">
-      Count: <h2>{count}</h2>
-      <button onClick={() => handleClick("-")}>-</button>
-      <button onClick={() => handleClick("+")}>+</button>
-    </div>
-    <CompC />
+      Current Value: <h1>{ myValue }</h1>
+      <button onClick={() => setValue(myValue+1)}>+</button>
+      <button onClick={() => setValue(myValue-1)}>-</button>
+      <CompA
+        myProp1={myValue}
+        myProp2="My Custom Value"
+        myProp3={true}
+        myProp4={() => <div>My NEW JSX!</div>}
+      />
     </>
-  );
+  )
 }
+
+
+export default Home;
