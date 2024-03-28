@@ -1,3 +1,4 @@
+import Link from "next/link"
 export default function Navbar(props){
 
     return(
@@ -5,7 +6,7 @@ export default function Navbar(props){
         <div className="container">
           <div className="navbar-brand">
             <a className="navbar-item" href="../">
-              <h1>Contente Manager APP</h1>
+              <h1>Content Manager APP</h1>
             </a>
             <span className="navbar-burger burger" data-target="navbarMenu">
               <span></span>
@@ -23,15 +24,24 @@ export default function Navbar(props){
                   </span>
                 </div>
               </div>
-              <a className="navbar-item is-active is-size-5 has-text-weight-semibold">
+              <Link 
+                className="navbar-item is-active is-size-5 has-text-weight-semibold"
+                href="/"
+              >
                 Home
-              </a>
+              </Link>
               <a className="navbar-item is-size-5 has-text-weight-semibold">
                 Examples
               </a>
               <a className="navbar-item is-size-5 has-text-weight-semibold">
                 Features
               </a>
+              <Link
+                className="navbar-item is-size-5 has-text-weight-semibold"
+                href="/about" 
+              >
+                About
+              </Link>
             </div>
           </div>
         </div>
